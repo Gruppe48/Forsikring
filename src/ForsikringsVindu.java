@@ -8,7 +8,7 @@ public class ForsikringsVindu extends JFrame
   private JTextField kundefelt, fakturafelt, nrfelt;
   private JTextField adressefelt,boligtypefelt, arealfelt,
 	                   verdifelt, sumfelt;
-  private JTextField biltypefelt,regårfelt, regnrfelt,
+  private JTextField biltypefelt,regÃ¥rfelt, regnrfelt,
 	                   lengdefelt, bonusfelt;
   private JTextField reisesumfelt;
 
@@ -21,11 +21,10 @@ public class ForsikringsVindu extends JFrame
 
   public ForsikringsVindu()
   {
-	super("TRYGG FORSIKRING");
+    super("TRYGG FORSIKRING");
+    Lytter lytter = new Lytter();
 
-	Lytter lytter = new Lytter();
-
-	Container c = getContentPane();
+    Container c = getContentPane();
 
 
     JPanel vestpanel = new JPanel();
@@ -113,7 +112,7 @@ public class ForsikringsVindu extends JFrame
     p7.setLayout(new GridLayout(1,2));
 	sumfelt = new JTextField(20);
 	sumfelt.addActionListener(lytter);
-	p7.add(new JLabel("Sum innbo og løsøre "));
+	p7.add(new JLabel("Sum innbo og lï¿½sï¿½re "));
 	p7.add(sumfelt);
     vestpanel.add(p7);
 
@@ -134,10 +133,10 @@ public class ForsikringsVindu extends JFrame
 
     JPanel p9 = new JPanel();
     p9.setLayout(new GridLayout(1,2));
-    regårfelt = new JTextField(20);
-	regårfelt.addActionListener(lytter);
-	p9.add(new JLabel("Registreringsår "));
-	p9.add(regårfelt);
+    regÃ¥rfelt = new JTextField(20);
+	regÃ¥rfelt.addActionListener(lytter);
+	p9.add(new JLabel("RegistreringsÃ¥r "));
+	p9.add(regÃ¥rfelt);
     vestpanel.add(p9);
 
     JPanel p10 = new JPanel();
@@ -152,7 +151,7 @@ public class ForsikringsVindu extends JFrame
     p11.setLayout(new GridLayout(1,2));
     lengdefelt = new JTextField(20);
 	lengdefelt.addActionListener(lytter);
-	p11.add(new JLabel("Årlig kjørelengde "));
+	p11.add(new JLabel("Ã…rlig kjÃ¸relengde "));
 	p11.add(lengdefelt);
 	vestpanel.add(p11);
 
@@ -211,7 +210,7 @@ public class ForsikringsVindu extends JFrame
 		public void slettBilFelt()
 		{
 			biltypefelt.setText("");
-			regårfelt.setText("");
+			regÃ¥rfelt.setText("");
 			regnrfelt.setText("");
 			lengdefelt.setText("");
 			bonusfelt.setText("");
@@ -231,77 +230,77 @@ public class ForsikringsVindu extends JFrame
 			reisesumfelt.setText("");
 	  }
 
-    public void registrerNyKunde()
-    {
-      < Metoden registrerer en ny kunde, under forutsetning av at kunden
-        ikke allerede er registrert i selskapet. I tekstområdet utskrift
+    public void registrerNyKunde() {
+      /*< Metoden registrerer en ny kunde, under forutsetning av at kunden
+        ikke allerede er registrert i selskapet. I tekstomrï¿½det utskrift
         gis det beskjed om utfallet av registreringen.
-        Merk! Denne metoden skal du IKKE programmere! >
+        Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void visKunde()
-    {
-      < Metoden skriver i tekstområdet utskrift all informasjon som er
+    public void visKunde() {
+      /*< Metoden skriver i tekstomrï¿½det utskrift all informasjon som er
         lagret om en kunde ut fra vedkommendes kundenummer. Hvis kunden med
-        et slikt kundenummer ikke er registrert, gis det i tekstområdet
+        et slikt kundenummer ikke er registrert, gis det i tekstomrï¿½det
         utskrift beskjed  om det.
-        Merk! Denne metoden skal du IKKE programmere! >
+        Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void slettKunde()
-    {
-      < Metoden sletter en kunde utfra vedkommendes kundenummer, under
+    public void slettKunde() {
+      /*< Metoden sletter en kunde utfra vedkommendes kundenummer, under
         forutsetning av at det finnes en kunde med et slikt kundenummer.
-        I tekstområdet utskrift gis det beskjed om utfallet av slettingen.
-        Merk! Denne metoden skal du IKKE programmere!>
+        I tekstomrï¿½det utskrift gis det beskjed om utfallet av slettingen.
+        Merk! Denne metoden skal du IKKE programmere!>*/
     }
 
-    public void visKunderegister()
-    {
-      < Metoden  viser i tekstområdet utskrift all informasjon som er lagret
+    public void visKunderegister() {
+      /*< Metoden  viser i tekstomrï¿½det utskrift all informasjon som er lagret
         i kunderegisteret om forsikringskundene og deres forsikringer.
-        Merk! Denne metoden skal du IKKE programmere! >
+        Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void tegnBilForsikring( ForsikringsKunde k )
-    {
-      < Metoden skal lese inn nødvendig informasjon for å opprette
+    public void tegnBilForsikring( ForsikringsKunde k ) {
+     /* < Metoden skal lese inn nï¿½dvendig informasjon for ï¿½ opprette
         bilforsikring for den kunden som parameteren k angir, under
         forutsetning av at vedkommende ikke har bilforsikring i selskapet
-        fra før. I tekstområdet utskrift skal det gis melding om utfallet
-        av opprettelsen. >
+        fra fï¿½r. I tekstomrï¿½det utskrift skal det gis melding om utfallet
+        av opprettelsen. >*/
     }
 
-    public void tegnHusInnboForsikring( ForsikringsKunde k )
-    {
-      < Metoden leser inn nødvendig informasjon for og oppretter
+    public void tegnHusInnboForsikring( ForsikringsKunde k ) {
+      /*< Metoden leser inn nï¿½dvendig informasjon for og oppretter
         hus- og innboforsikring for den kunden som parameteren k angir,
         under forutsetning av at vedkommende ikke har hus- og innboforsikring
-        fra før. I tekstområdet utskrift gis det melding om utfallet
+        fra fï¿½r. I tekstomrï¿½det utskrift gis det melding om utfallet
         av opprettelsen.
-        Merk! Denne metoden skal du IKKE programmere! >
+        Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void tegnReiseForsikring( ForsikringsKunde k )
-    {
-      < Metoden leser inn nødvendig informasjon for å opprette
+    public void tegnReiseForsikring( ForsikringsKunde k ) {
+      /*< Metoden leser inn nï¿½dvendig informasjon for ï¿½ opprette
         reiseforsikring for den kunden som parameteren k angir, under
         forutsetning av at vedkommende ikke har reiseforsikring fra
-        før. I tekstområdet utskrift gis det melding om utfallet
+        fï¿½r. I tekstomrï¿½det utskrift gis det melding om utfallet
         av opprettelsen.
-        Merk! Denne metoden skal du IKKE programmere! >
+        Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void tegnForsikrning( int type )
-    {
-      < Metoden skal opprette forsikring av den typen som parameteren
+    public void tegnForsikrning( int type ) {
+      /* < Metoden skal opprette forsikring av den typen som parameteren
         type angir, (Hint: Se klassen Forsikring), for kunden med det
         kundenummer som brukeren av programmet har skrevet inn, under
         forutsetning av at det finnes en slik kunde i kunderegisteret.
-        Hvis det ikke finnes en slik kunde, skal det i tekstområdet
-        utskrift gis medling om det. >
+        Hvis det ikke finnes en slik kunde, skal det i tekstomrï¿½det
+        utskrift gis medling om det. >*/
     }
 
-    < private lytte-klasse Lytter >
+   // < private lytte-klasse Lytter >
+    private class Lytter implements ActionListener {
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      throw new UnsupportedOperationException("Not supported yet.");
+    }
+      
+    }
+    
   } //end of class ForsikringsVindu
