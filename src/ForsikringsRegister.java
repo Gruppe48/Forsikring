@@ -25,7 +25,7 @@ public class ForsikringsRegister
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde kunde = kunderegister[i];
       
-      if (kunde.forsikringsNr == nr) {
+      if (kunde.getForsikringsNr() == nr) {
         return i;
       }
       
@@ -49,6 +49,15 @@ public class ForsikringsRegister
   public void utvidRegister() {
     /* < Metoden skal utvide arrayen kunderegister med så mange elementer som
       UTVIDELSE angir. >*/
+    // Lage midlertidig array for å holde data.
+    ForsikringsKunde[] kr = new ForsikringsKunde[kunderegister.length];
+    // Kopiere ut data
+    System.arraycopy(kunderegister, 0, kr, 0, kunderegister.length);
+    // Lage nytt utvidet array
+    kunderegister = new ForsikringsKunde[kr.length+UTVIDELSE];
+    // Kopiere dataene tilbake
+    System.arraycopy(kr, 0, kunderegister, 0, kr.length);
+    // Success?
   }
 
   public boolean nyKunde(ForsikringsKunde k) {
@@ -57,6 +66,32 @@ public class ForsikringsRegister
       fullt, skal det utvides med det antall elementer som UTVIDELSE angir, og
       deretter skal k settes inn. Returverdien skal angi om innsettingen var
       vellykket eller ikke. >*/
+    for (int i = 0; i < kunderegister.length; i++) {
+      ForsikringsKunde kunde = kunderegister[i];
+      
+      if (k != null) {
+        if (kunde.getNavn() == k.getNavn()) {
+          return false;
+        }
+      }
+    }
+    
+    // Kommer vi hit finnes ikke kunden.
+    
+    if (kunderegister.length == SIZE) {
+      utvidRegister();
+    }
+    
+    // sett inn objektet.
+    for (int i = 0; i < kunderegister.length; i++) {
+      ForsikringsKunde kunde = kunderegister[i];
+      if (kunde == null) {
+        kunderegister[i] = k;
+        return true;
+      }
+    }
+    
+    return false;
   }
 
   public ForsikringsKunde fjernKunde(int nr) {
