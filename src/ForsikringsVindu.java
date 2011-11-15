@@ -183,8 +183,8 @@ public class ForsikringsVindu extends JFrame
 	vestpanel.add(regReise);*/
 
     JPanel utskriftspanel = new JPanel();
-
-	utskrift = new JTextArea(36,30);
+        
+	utskrift = new JTextArea(21,30);
 	utskriftspanel.add(new JScrollPane(utskrift));
 
 	JPanel registreringspanel = new JPanel();
@@ -194,7 +194,7 @@ public class ForsikringsVindu extends JFrame
 
 
 	c.add(utskriftspanel,BorderLayout.EAST);
-	setSize(810, 630);
+	setSize(810, 380);
 	setVisible(true);
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
  }
