@@ -6,18 +6,18 @@ public class ForsikringsVindu extends JFrame
 {
 
   private JTextField kundefelt, fakturafelt, nrfelt;
-  private JTextField adressefelt,boligtypefelt, arealfelt,
-	                   verdifelt, sumfelt;
+  //private JTextField adressefelt,boligtypefelt, arealfelt,
+//	                   verdifelt, sumfelt;
   private JTextField biltypefelt,regårfelt, regnrfelt,
 	                   lengdefelt, bonusfelt;
-  private JTextField reisesumfelt;
+  //private JTextField reisesumfelt;
 
   private JTextArea utskrift;
 
-  private JButton regKunde, visKunde, slettKunde, regBil,
-          regHusInnbo, regReise, visAlle;
+  private JButton regKunde, visKunde, slettKunde, regBil/*,
+          regHusInnbo, regReise*/, visAlle;
 
-  ForsikringsRegister kunderegisteret = new ForsikringsRegister();;
+  ForsikringsRegister kunderegisteret = new ForsikringsRegister();
 
   public ForsikringsVindu()
   {
@@ -215,7 +215,7 @@ public class ForsikringsVindu extends JFrame
 			lengdefelt.setText("");
 			bonusfelt.setText("");
 		}
-
+                /*
 		public void slettHusFelt()
 		{
 			adressefelt.setText("");
@@ -229,12 +229,13 @@ public class ForsikringsVindu extends JFrame
 		{
 			reisesumfelt.setText("");
 	  }
-
+*/
     public void registrerNyKunde() {
       /*< Metoden registrerer en ny kunde, under forutsetning av at kunden
         ikke allerede er registrert i selskapet. I tekstomr�det utskrift
         gis det beskjed om utfallet av registreringen.
         Merk! Denne metoden skal du IKKE programmere! >*/
+   
     }
 
     public void visKunde() {
