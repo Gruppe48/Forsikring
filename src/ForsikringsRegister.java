@@ -69,7 +69,7 @@ public class ForsikringsRegister
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde kunde = kunderegister[i];
       
-      if (k != null) {
+      if (kunde != null) {
         if (kunde.getNavn().equals(k.getNavn())) {
           return false;
         }

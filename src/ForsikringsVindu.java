@@ -194,7 +194,7 @@ public class ForsikringsVindu extends JFrame
 
 
 	c.add(utskriftspanel,BorderLayout.EAST);
-	setSize(810, 380);
+	setSize(850, 400);
 	setVisible(true);
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
  }
@@ -231,6 +231,16 @@ public class ForsikringsVindu extends JFrame
 	  }
 */
     public void registrerNyKunde() {
+      if(kundefelt.getText() != null && fakturafelt.getText() != null) {
+      ForsikringsKunde kunden = new ForsikringsKunde(kundefelt.getText(),fakturafelt.getText());
+      
+      if(kunderegisteret.nyKunde(kunden));
+        utskrift.append("Ny forsikringskunde ble registrert\n\n");
+      }
+      
+      else {
+        utskrift.append("Kunden ble ikke registert");
+      }
       /*< Metoden registrerer en ny kunde, under forutsetning av at kunden
         ikke allerede er registrert i selskapet. I tekstomr�det utskrift
         gis det beskjed om utfallet av registreringen.
@@ -239,6 +249,17 @@ public class ForsikringsVindu extends JFrame
     }
 
     public void visKunde() {
+      int nr = Integer.parseInt(nrfelt.getText());
+      
+      ForsikringsKunde kunden = kunderegisteret.finnKunde(nr);
+      
+      if(kunden != null) {
+      utskrift.append(kunden.toString());
+      }
+      
+      else {
+        utskrift.append("Kunden finnes ikke i registeret");
+      }
       /*< Metoden skriver i tekstomr�det utskrift all informasjon som er
         lagret om en kunde ut fra vedkommendes kundenummer. Hvis kunden med
         et slikt kundenummer ikke er registrert, gis det i tekstomr�det
@@ -296,12 +317,18 @@ public class ForsikringsVindu extends JFrame
 
    // < private lytte-klasse Lytter >
     private class Lytter implements ActionListener {
-
+  
     @Override
     public void actionPerformed(ActionEvent e) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      
+      if (e.getSource() == regKunde) {
+        registrerNyKunde();
+      }
+      
+      else if(e.getSource() == visKunde) {
+        visKunde();
+      }
     }
       
-    }
-    
+    }   
   } //end of class ForsikringsVindu
