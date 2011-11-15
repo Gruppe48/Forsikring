@@ -99,6 +99,7 @@ public class ForsikringsKunde
       TOTALKUNDERABATT (Hint: Se klassen Forsikring). > */
   }
 
+  @Override
   public String toString() {
     String utskrift = "";
     NumberFormat kroneformat = NumberFormat.getCurrencyInstance();

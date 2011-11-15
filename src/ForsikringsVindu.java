@@ -74,7 +74,7 @@ public class ForsikringsVindu extends JFrame
 	vestpanel.add(knappepanel);
 
 
-    vestpanel.add(new JLabel("HUS OG INNBO-FORSIKRING "));
+    /*vestpanel.add(new JLabel("HUS OG INNBO-FORSIKRING "));
 
     JPanel p3 = new JPanel();
     p3.setLayout(new GridLayout(1,2));
@@ -118,7 +118,7 @@ public class ForsikringsVindu extends JFrame
 
 	regHusInnbo = new JButton("Tegn hus og innboforsikring");
 	regHusInnbo.addActionListener(lytter);
-	vestpanel.add(regHusInnbo);
+	vestpanel.add(regHusInnbo);*/
 
 
     vestpanel.add(new JLabel("BIL-FORSIKRING "));
@@ -167,7 +167,7 @@ public class ForsikringsVindu extends JFrame
 	regBil.addActionListener(lytter);
 	vestpanel.add(regBil);
 
-	vestpanel.add(new JLabel("REISE-FORSIKRING "));
+    /*vestpanel.add(new JLabel("REISE-FORSIKRING "));
 
     JPanel p13 = new JPanel();
     p13.setLayout(new GridLayout(1,2));
@@ -180,7 +180,7 @@ public class ForsikringsVindu extends JFrame
 
 	regReise = new JButton("Tegn reiseforsikring");
 	regReise.addActionListener(lytter);
-	vestpanel.add(regReise);
+	vestpanel.add(regReise);*/
 
     JPanel utskriftspanel = new JPanel();
 

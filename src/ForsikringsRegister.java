@@ -70,7 +70,7 @@ public class ForsikringsRegister
       ForsikringsKunde kunde = kunderegister[i];
       
       if (k != null) {
-        if (kunde.getNavn() == k.getNavn()) {
+        if (kunde.getNavn().equals(k.getNavn())) {
           return false;
         }
       }
@@ -127,8 +127,11 @@ public class ForsikringsRegister
     a.setText("Kunderegister:\n");
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde fk = kunderegister[i];
-      a.append(fk);
-      a.append("\n");
+      if (fk != null ) {
+        a.append(fk.toString());
+        a.append("\n");
+      }
+      
     }
   }
 
