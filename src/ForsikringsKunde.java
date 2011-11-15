@@ -116,7 +116,7 @@ public class ForsikringsKunde
               + "og får dermed" + Forsikring.TOTALKUNDERABATT + "%\n\n";
     }
     
-    utskrift += "SUM FORSIKRINGSPREMIER PR ÅR: kr " + kroneformat.format(premie() + "\n");
+    utskrift += "SUM FORSIKRINGSPREMIER PR ÅR: kr " + kroneformat.format(premie())+"\n";
     
     return utskrift;
     /*< Metoden skal returnere en tekst som inneholder alle data som er lagret
