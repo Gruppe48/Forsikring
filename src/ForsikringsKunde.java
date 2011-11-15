@@ -99,11 +99,18 @@ public class ForsikringsKunde
       TOTALKUNDERABATT (Hint: Se klassen Forsikring). > */
   }
 
+
   @Override
   public String toString() {
     String utskrift = "";
     NumberFormat kroneformat = NumberFormat.getCurrencyInstance();
     
+    for(int i=0; i < forsikringer.length; i++) {
+      if(forsikringer[i] != null) {
+        utskrift += forsikringer[i].premie();
+      }
+    }
+                
     if(totalkunde()) {
       utskrift += "Forsikringstager er totalkunde i TRYGG FORSIKRING\n "
               + "og får dermed" + Forsikring.TOTALKUNDERABATT + "%\n\n";
