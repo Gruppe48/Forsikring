@@ -1,14 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Innlevering 4 - 16/11-2011
+ * Kristoffer Berdal - s180212
+ * Jan E. Vandevjen - s180494
+ * Tommy Nyrud - s180487
+ * Informasjonsteknologi 1IA og
+ * Dataingeniør 1AA 
  */
 
-/**
- *
- * @author Kristoffer Berdal <web@flexd.net>
- * @studnr 180212
- * @date Nov 14, 2011
- */
 import javax.swing.JTextArea;
 
 public class ForsikringsRegister
@@ -16,11 +14,10 @@ public class ForsikringsRegister
   public static final int SIZE = 1000;
   public static final int UTVIDELSE = 10;
   private ForsikringsKunde[] kunderegister = new ForsikringsKunde[SIZE];
-
+  
+  /*Finner indeksen til ForsikringsKunde objektet med forsikringsNr
+    som blir gitt med som parameter*/
   private int indeks(int nr) {
-    /* Metoden skal returnere indeksen til det ForsikringsKunde-objektet
-      som har samme forsikringsNr som parameteren nr angir. Hvis et slikt
-      objekt ikke finnes i kunderegisteret, skal metoden returnere -1. >*/
     
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde kunde = kunderegister[i];
@@ -32,12 +29,10 @@ public class ForsikringsRegister
     }
     return -1;
   }
-
+  
+  /*Metode som returnerer ForsikringsKunde objektet som har samme forsikringsNr 
+    som parameteret */
   public ForsikringsKunde finnKunde(int nr) {
-    /* Metoden skal returnere det ForsikringsKunde-objektet som har samme
-      forsikringsNr som parameteren nr angir. Hvis et slikt objekt ikke
-      finnes i kunderegisteret, skal metoden returnere null.
-      Krav: Du SKAL bruke indeks-metoden når du programmerer denne. >*/
     int i = indeks(nr);
     
     if (i != -1) {
@@ -45,27 +40,21 @@ public class ForsikringsRegister
     }
     return null;
   }
-
+  
+  //Utvidder registeret med så mange elementer som UTVIDELSE angir
   public void utvidRegister() {
-    /* < Metoden skal utvide arrayen kunderegister med så mange elementer som
-      UTVIDELSE angir. >*/
-    // Lage midlertidig array for å holde data.
+    
+    /* Lager en midlertidig array for å holde data, kopierer disse og opretter en
+       ny utvidet array og kopierer innholdet tilbake*/
     ForsikringsKunde[] kr = new ForsikringsKunde[kunderegister.length];
-    // Kopiere ut data
     System.arraycopy(kunderegister, 0, kr, 0, kunderegister.length);
-    // Lage nytt utvidet array
     kunderegister = new ForsikringsKunde[kr.length+UTVIDELSE];
-    // Kopiere dataene tilbake
-    System.arraycopy(kr, 0, kunderegister, 0, kr.length);
-    // Success?
+    System.arraycopy(kr, 0, kunderegister, 0, kr.length);  
   }
-
+  
+  //GÅR Å LAGE EN BRUKER UTEN NAVN/ADRESSE. FIKS!!
+  //Legger inn en ny kunde i registeret
   public boolean nyKunde(ForsikringsKunde k) {
-    /*< Metoden skal sette parameteren k inn i kunderegisteret, under forutsetning
-      av at denne kunden ikke er registrert der fra før. Hvis kunderegisteret er
-      fullt, skal det utvides med det antall elementer som UTVIDELSE angir, og
-      deretter skal k settes inn. Returverdien skal angi om innsettingen var
-      vellykket eller ikke. >*/
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde kunde = kunderegister[i];
       
@@ -82,7 +71,7 @@ public class ForsikringsRegister
       utvidRegister();
     }
     
-    // sett inn objektet.
+    // Setter inn objektet.
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde kunde = kunderegister[i];
       if (kunde == null) {
@@ -93,37 +82,25 @@ public class ForsikringsRegister
     
     return false;
   }
-
+  
+  //Fjerner kunde med forsikringsNr som parameteret angir
   public ForsikringsKunde fjernKunde(int nr) {
-    /*< Hvis det i kunderegisteret finnes et ForsikringsKunde-objekt med samme
-      forsikringsNr som parameteren nr angir, skal dette fjernes fra
-      kunderegisteret. Det fjernede objektet skal deretter returneres fra
-      metoden. Hvis det ikke finnes et slikt objekt, skal metoden returnere
-      null. >*/
     int i = indeks(nr);
     if (i != -1) {
       for (int j = 0; j < kunderegister.length; j++) {
         ForsikringsKunde forsikringsKunde = kunderegister[j];
-        kunderegister[j] = null;
-        return forsikringsKunde;
+        if(kunderegister[j].getForsikringsNr() == nr) {
+          kunderegister[j] = null;
+          return forsikringsKunde;
+          }
       }
     }
     return null;
   }
-
+  
+  //Skriver ut informasjon om alle kundene i registeret og forsikringene deres
   public void visRegister(JTextArea a) {
-    /*< Metoden skal i tekstområdet som parameteren a angir plassere all
-      informasjon som er lagret i kunderegisteret om forsikringskundene
-      og deres forsikringer >*/
     
-    /* private String navn;
-       private String fakturaAdresse;
-       private int forsikringsNr;
-       private static int nesteNr = 1;
-       public static final int MAX = 3; //Maks antall forsikringer kunden kan ha.
-       private Forsikring[] forsikringer;
-     *
-     */
     a.setText("Kunderegister:\n");
     for (int i = 0; i < kunderegister.length; i++) {
       ForsikringsKunde fk = kunderegister[i];
@@ -135,4 +112,4 @@ public class ForsikringsRegister
     }
   }
 
-} //end of class ForsikringsRegister
+} 

@@ -1,24 +1,23 @@
+/* 
+ * Innlevering 4 - 16/11-2011
+ * Kristoffer Berdal - s180212
+ * Jan E. Vandevjen - s180494
+ * Tommy Nyrud - s180487
+ * Informasjonsteknologi 1IA og
+ * Dataingeniør 1AA 
+ */
 
+//Klasse for å konstruere Bilforsikrings objekter
 import java.text.NumberFormat;
 
-/**
- *
- * @author Kristoffer Berdal <web@flexd.net>
- * @studnr 180212
- * @date Nov 14, 2011
- */
 public class BilForsikring implements Forsikring {
 
   public static final double PRIS_PER_KM = 1.5;
-  public String biltype = "";
-  
-  public int registreringsår = -1;
-  
-  public String registeringsnummer = "";
-  
-  public int kjørelengde = -1;
-  
-  public double bonus = 0;
+  private String biltype = "";
+  private int registreringsår = -1;
+  private String registeringsnummer = "";
+  private int kjørelengde = -1;
+  private double bonus = 0;
 
   public BilForsikring(String b, int year, String reg, int lengde, double bon) {
     biltype = b;
@@ -28,7 +27,6 @@ public class BilForsikring implements Forsikring {
     bonus = bon;
   }
  
-  
   @Override
   public double premie() {
     double sum = PRIS_PER_KM * kjørelengde;
@@ -45,6 +43,9 @@ public class BilForsikring implements Forsikring {
   @Override
   public String toString() {
     NumberFormat kroneformat = NumberFormat.getCurrencyInstance();
-    return "BIL - Forsikring\nBiltype: " + biltype + "\nRegistreringsår: " + registreringsår + "\nKjørelengde: " + kjørelengde + "km\nBonus: " + (int)bonus + "\nÅrlig premie: " + kroneformat.format(premie());  
+    return "BIL - Forsikring\nBiltype: " + biltype + "\nRegistreringsår: " + 
+            registreringsår + "\nRegistreringsnr: " + registeringsnummer + 
+            "\nKjørelengde: " + kjørelengde + "km\nBonus: " + 
+            (int)bonus + "\nÅrlig premie: " + kroneformat.format(premie());  
   }
 }

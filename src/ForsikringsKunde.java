@@ -1,7 +1,13 @@
-/**
- *
- * @author Dobbelmoral
+/* 
+ * Innlevering 4 - 16/11-2011
+ * Kristoffer Berdal - s180212
+ * Jan E. Vandevjen - s180494
+ * Tommy Nyrud - s180487
+ * Informasjonsteknologi 1IA og
+ * Dataingeniør 1AA 
  */
+
+//Klasse for å konstruere ForsikringsKunde objekter
 
 import java.text.NumberFormat;
 
@@ -13,13 +19,6 @@ public class ForsikringsKunde
   private static int nesteNr = 1;
   public static final int MAX = 3; //Maks antall forsikringer kunden kan ha.
   private Forsikring[] forsikringer;
-
-  /*< Konstruktøren skal utføre nødvendig initialisering av datafeltene,
-    og opprette arrayen. ForsikringsKunden skal tildeles et unikt forsikringsNr
-    som blir generert automatisk. Kontruktøren skal ta i mot kundens navn og
-    fakturaAdresse som parametere. >
-
-  < get-metoder for navn og forsikringsNr. > */
   
   public ForsikringsKunde(String navn, String fakturaAdresse) {
     this.navn = navn;
@@ -28,6 +27,7 @@ public class ForsikringsKunde
     forsikringsNr = nesteNr++; 
   }
 
+  //Sjekker om kunden har forsikringer av typen f og returnerer true, ellers false
   public boolean erForsikret(Forsikring f) {
     for(int i=0; i < forsikringer.length; i++) {
       if(forsikringer[i] != null && forsikringer[i].getForsikringsType() == f.getForsikringsType()) {
@@ -45,6 +45,8 @@ public class ForsikringsKunde
     return forsikringsNr;
   }
   
+  //PRINTER ALDRI Forsikring ble ikke registert!! FIKS
+  //Registrerer en ny forsikring på brukeren 
   public String tegnForsikring(Forsikring f)
   {
     if (!erForsikret(f)) {
@@ -58,13 +60,9 @@ public class ForsikringsKunde
     }
     return "Forsikring ble ikke registert\n";
   }
-    
-    /*< Metoden skal opprette en ny forsikring på kunden, under forutsetning
-      av at kunden ikke allerede har denne typen forsikring fra før.
-      Returverdien skal inneholde en tekst med informasjon om utfallet av
-      opprettelsen. > */
   
-
+  /* Sjekker om brukeren har alle 3 forsikringstypene, selv om denne metoden
+     ikke vil returnere true nå som programmet kun omhandler bilforsikring */
   public boolean totalkunde()
   {
     for (int i=0; i < forsikringer.length; i++) {
@@ -74,12 +72,9 @@ public class ForsikringsKunde
     }
     return true;
   }
-
-    /*< Hvis en kunde har opprettet alle tre forsikringstyper, er kunden
-      "totalkunde", og metoden skal returnere true. I motsatt fall skal
-      metoden returnere false. > */
   
-
+  /*Regner ut forsikringspremien, og gir kunden en bonus om kunden er 
+    totalkunde */
   public double premie()
   {
     double premie = 0;
@@ -93,13 +88,9 @@ public class ForsikringsKunde
       premie = premie - ((premie/100) * Forsikring.TOTALKUNDERABATT);
     }
     return premie;
-    /*< Metoden skal beregne, og returnere, det kunden skal betale for alle
-      forsikringene til sammen. Hvis kunden er "totalkunde", dvs har både
-      hus/innbo- , bil- og reiseforsikring, skal vedkommende få
-      TOTALKUNDERABATT (Hint: Se klassen Forsikring). > */
   }
 
-
+  //toString som printer all informasjon om forsikringskunden
   @Override
   public String toString() {
     String utskrift = "";
@@ -122,12 +113,11 @@ public class ForsikringsKunde
     
     utskrift += "\n\nSUM FORSIKRINGSPREMIER PR ÅR: kr " + kroneformat.format(premie())+"\n";
     
+    for(int i=0; i < 30; i++) {
+      utskrift += "=";
+    }
+    
     return utskrift;
-    /*< Metoden skal returnere en tekst som inneholder alle data som er lagret
-      om kunden og vedkommendes forsikringer. Det skal skrives ut hva hver
-      enkelt forsikring koster, og det årlige betløpet kunden må betale.
-      Hvis kunden er "totalkunde", skal det gis informasjon om det og om
-      hvor mye det er gitt i rabatt. > */
   }
 
-} //end of class ForsikringsKunde
+} 
