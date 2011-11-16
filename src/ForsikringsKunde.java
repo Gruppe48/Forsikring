@@ -30,7 +30,7 @@ public class ForsikringsKunde
 
   public boolean erForsikret(Forsikring f) {
     for(int i=0; i < forsikringer.length; i++) {
-      if(forsikringer[i].getForsikringsType() == f.getForsikringsType()) {
+      if(forsikringer[i] != null && forsikringer[i].getForsikringsType() == f.getForsikringsType()) {
         return true;
       }
     }  
@@ -52,11 +52,11 @@ public class ForsikringsKunde
         if(forsikringer[i] == null) {
           forsikringer[i] = f;
           
-          return "Ny forsikring er registert";
+          return "Ny forsikring er registert\n";
         }
       }
     }
-    return "Forsikring ble ikke registert";
+    return "Forsikring ble ikke registert\n";
   }
     
     /*< Metoden skal opprette en ny forsikring på kunden, under forutsetning
@@ -105,9 +105,13 @@ public class ForsikringsKunde
     String utskrift = "";
     NumberFormat kroneformat = NumberFormat.getCurrencyInstance();
     
+    utskrift += "Forsikringstaker: " + getNavn() + "\nFakturaadresse: " + 
+            fakturaAdresse + "\nKundenummer: " + getForsikringsNr() + "\n\n";
+            
+    
     for(int i=0; i < forsikringer.length; i++) {
       if(forsikringer[i] != null) {
-        utskrift += forsikringer[i].premie();
+        utskrift += forsikringer[i].toString();
       }
     }
                 
@@ -116,7 +120,7 @@ public class ForsikringsKunde
               + "og får dermed" + Forsikring.TOTALKUNDERABATT + "%\n\n";
     }
     
-    utskrift += "SUM FORSIKRINGSPREMIER PR ÅR: kr " + kroneformat.format(premie())+"\n";
+    utskrift += "\n\nSUM FORSIKRINGSPREMIER PR ÅR: kr " + kroneformat.format(premie())+"\n";
     
     return utskrift;
     /*< Metoden skal returnere en tekst som inneholder alle data som er lagret

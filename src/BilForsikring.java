@@ -45,6 +45,6 @@ public class BilForsikring implements Forsikring {
   @Override
   public String toString() {
     NumberFormat kroneformat = NumberFormat.getCurrencyInstance();
-    return "BIL - Forsikring\nBiltype: " + biltype + "\nregistreringsår: " + registreringsår + "\n kjørelengde: " + kjørelengde + "km\nbonus: " + (int)bonus + "\n Årlig premie: " + kroneformat.format(premie());  
+    return "BIL - Forsikring\nBiltype: " + biltype + "\nRegistreringsår: " + registreringsår + "\nKjørelengde: " + kjørelengde + "km\nBonus: " + (int)bonus + "\nÅrlig premie: " + kroneformat.format(premie());  
   }
 }

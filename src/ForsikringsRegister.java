@@ -15,7 +15,7 @@ public class ForsikringsRegister
 {
   public static final int SIZE = 1000;
   public static final int UTVIDELSE = 10;
-  private ForsikringsKunde[] kunderegister = new ForsikringsKunde[SIZE ];
+  private ForsikringsKunde[] kunderegister = new ForsikringsKunde[SIZE];
 
   private int indeks(int nr) {
     /* Metoden skal returnere indeksen til det ForsikringsKunde-objektet

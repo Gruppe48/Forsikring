@@ -239,7 +239,7 @@ public class ForsikringsVindu extends JFrame
       }
       
       else {
-        utskrift.append("Kunden ble ikke registert");
+        utskrift.append("Kunden ble ikke registert\n\n");
       }
       /*< Metoden registrerer en ny kunde, under forutsetning av at kunden
         ikke allerede er registrert i selskapet. I tekstomr�det utskrift
@@ -249,17 +249,27 @@ public class ForsikringsVindu extends JFrame
     }
 
     public void visKunde() {
-      int nr = Integer.parseInt(nrfelt.getText());
+      boolean failed = false;
+      ForsikringsKunde kunden = null;
       
-      ForsikringsKunde kunden = kunderegisteret.finnKunde(nr);
+      try { 
+        int nr = Integer.parseInt(nrfelt.getText());
       
-      if(kunden != null) {
-      utskrift.append(kunden.toString());
+        kunden = kunderegisteret.finnKunde(nr);
       }
       
-      else {
-        utskrift.append("Kunden finnes ikke i registeret");
+      catch(Exception e) {
+        failed = true;
       }
+      
+      if(!failed) {
+        if(kunden != null) {
+        utskrift.append(kunden.toString());
+        }
+      }
+        else {
+          utskrift.append("Kunden finnes ikke i registeret\n");
+        }
       /*< Metoden skriver i tekstomr�det utskrift all informasjon som er
         lagret om en kunde ut fra vedkommendes kundenummer. Hvis kunden med
         et slikt kundenummer ikke er registrert, gis det i tekstomr�det
@@ -268,6 +278,30 @@ public class ForsikringsVindu extends JFrame
     }
 
     public void slettKunde() {
+      boolean failed = false;
+      ForsikringsKunde kunden = null;
+      int nr = -1;
+      
+      try { 
+        nr = Integer.parseInt(nrfelt.getText());
+        kunden = kunderegisteret.finnKunde(nr);
+      }
+      
+      catch(Exception e) {
+        failed = true;
+      }
+      
+      if(!failed) {
+        if(kunden != null) {
+        kunderegisteret.fjernKunde(nr);
+        utskrift.append("Kundenr " + nr + " ble slettet\n");
+        }
+      }
+      
+      else {
+        utskrift.append("Ingen kunde med dette kundenummeret finnes i systemet");
+      }
+      
       /*< Metoden sletter en kunde utfra vedkommendes kundenummer, under
         forutsetning av at det finnes en kunde med et slikt kundenummer.
         I tekstomr�det utskrift gis det beskjed om utfallet av slettingen.
@@ -275,12 +309,30 @@ public class ForsikringsVindu extends JFrame
     }
 
     public void visKunderegister() {
+      kunderegisteret.visRegister(utskrift);
       /*< Metoden  viser i tekstomr�det utskrift all informasjon som er lagret
         i kunderegisteret om forsikringskundene og deres forsikringer.
         Merk! Denne metoden skal du IKKE programmere! >*/
     }
 
-    public void tegnBilForsikring( ForsikringsKunde k ) {
+    public void tegnBilForsikring(ForsikringsKunde k) {
+     // try {
+       
+        String type = biltypefelt.getText(); 
+        int regår = Integer.parseInt(regårfelt.getText());
+        String regnr = regnrfelt.getText();
+        int lengde = Integer.parseInt(lengdefelt.getText());
+        double bonus = Double.parseDouble(bonusfelt.getText());
+        
+        BilForsikring bilForsikring = new BilForsikring(type, regår, regnr, lengde, bonus);
+        k.tegnForsikring(bilForsikring);
+        utskrift.append("Ny forsikring ble opprettet\n");
+      //}
+      
+      //catch (Exception e) {
+      //  utskrift.append("Forsikringen ble ikke opprettet,\nBruker finnes ikke eller\nFelt mangler\n");
+      //}
+      
      /* < Metoden skal lese inn n�dvendig informasjon for � opprette
         bilforsikring for den kunden som parameteren k angir, under
         forutsetning av at vedkommende ikke har bilforsikring i selskapet
@@ -288,25 +340,64 @@ public class ForsikringsVindu extends JFrame
         av opprettelsen. >*/
     }
 
-    public void tegnHusInnboForsikring( ForsikringsKunde k ) {
-      /*< Metoden leser inn n�dvendig informasjon for og oppretter
+    /*public void tegnHusInnboForsikring( ForsikringsKunde k ) {
+      < Metoden leser inn n�dvendig informasjon for og oppretter
         hus- og innboforsikring for den kunden som parameteren k angir,
         under forutsetning av at vedkommende ikke har hus- og innboforsikring
         fra f�r. I tekstomr�det utskrift gis det melding om utfallet
         av opprettelsen.
-        Merk! Denne metoden skal du IKKE programmere! >*/
-    }
+        Merk! Denne metoden skal du IKKE programmere! >
+    } */
 
-    public void tegnReiseForsikring( ForsikringsKunde k ) {
-      /*< Metoden leser inn n�dvendig informasjon for � opprette
+    /*public void tegnReiseForsikring( ForsikringsKunde k ) {
+      < Metoden leser inn n�dvendig informasjon for � opprette
         reiseforsikring for den kunden som parameteren k angir, under
         forutsetning av at vedkommende ikke har reiseforsikring fra
         f�r. I tekstomr�det utskrift gis det melding om utfallet
         av opprettelsen.
-        Merk! Denne metoden skal du IKKE programmere! >*/
-    }
+        Merk! Denne metoden skal du IKKE programmere! >
+    } */
 
-    public void tegnForsikrning( int type ) {
+    public void tegnForsikring( int type ) {
+      boolean failed = false;
+      ForsikringsKunde kunden = null;
+      int nr = -1;
+      
+      try { 
+        nr = Integer.parseInt(nrfelt.getText());
+        kunden = kunderegisteret.finnKunde(nr);
+      }
+      
+      catch(Exception e) {
+        failed = true;
+      }
+      
+      if(!failed) {
+        if(kunden != null) {
+          switch (type) {
+        
+            case Forsikring.BIL:
+              tegnBilForsikring(kunden);
+              break;
+             
+            /*case Forsikring.HUS_INNBO:
+              tegnHusInnboForsikring(kunden);
+              break;
+              
+            case Forsikring.REISE:
+              tegnReiseForsikring(kunden);
+              break; */
+          }
+          
+        }
+      }
+      
+      else {
+        utskrift.append("Ingen kunde med dette kundenummeret finnes i systemet");
+      }
+      
+      
+
       /* < Metoden skal opprette forsikring av den typen som parameteren
         type angir, (Hint: Se klassen Forsikring), for kunden med det
         kundenummer som brukeren av programmet har skrevet inn, under
@@ -328,6 +419,19 @@ public class ForsikringsVindu extends JFrame
       else if(e.getSource() == visKunde) {
         visKunde();
       }
+      
+      else if(e.getSource() == slettKunde) {
+        slettKunde();
+      }
+      
+      else if(e.getSource() == visAlle) {
+        visKunderegister();
+      }
+      
+      else if(e.getSource() == regBil) {
+        tegnForsikring(Forsikring.BIL);
+      }
+           
     }
       
     }   
