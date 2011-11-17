@@ -245,17 +245,34 @@ public class ForsikringsVindu extends JFrame
     
     //Metode for å registrere en ny kunde
     public void registrerNyKunde() {
-      if(kundefelt.getText() != null && fakturafelt.getText() != null) {
-      ForsikringsKunde kunden = new ForsikringsKunde(kundefelt.getText(),fakturafelt.getText());
-      
-      if(kunderegisteret.nyKunde(kunden));
-        utskrift.append("Ny forsikringskunde ble registrert\n\n");
+      boolean failed = false;
+      String kundenavn = "";
+      String adresse = "";
+      ForsikringsKunde kunden = null;
+      try {
+        kundenavn = kundefelt.getText();
+        adresse = fakturafelt.getText();
+      }
+      catch (Exception e) {
+        failed = true;
       }
       
+      if (!failed && !kundenavn.equals("") && !adresse.equals("")) {
+        // Vi har verdier som ikke er tomme.
+        kunden = new ForsikringsKunde(kundenavn, adresse);
+      }
       else {
-        utskrift.append("Kunden ble ikke registert\n\n");
+        utskrift.append("Kunden ble ikke registert fordi du ikke har oppgitt nok informasjon.\n\n");
       }
-   
+      if (kunden != null) {
+        if(kunderegisteret.nyKunde(kunden)) {
+        utskrift.append("Ny forsikringskunde ble registrert\n\n");
+        }
+      
+        else {
+          utskrift.append("Kunden ble ikke registert\n\n");
+        }
+      }
     }
 
     //Metode for å finne en gitt kunde
@@ -319,20 +336,31 @@ public class ForsikringsVindu extends JFrame
     //GÅR ANN Å REGISTRERE EN FORSIKRING UTEN REGNR, MEN IKKE UTEN NOE ANNET?!??! FIKS
     //Registrerer en ny BilForikring på gitt bruker
     public void tegnBilForsikring(ForsikringsKunde k) {
+      String type = "";
+      int regår = -1;
+      String regnr = "";
+      int lengde = -1;
+      double bonus = -1;
+      boolean failed = false;
       try {
        
-        String type = biltypefelt.getText(); 
-        int regår = Integer.parseInt(regårfelt.getText());
-        String regnr = regnrfelt.getText();
-        int lengde = Integer.parseInt(lengdefelt.getText());
-        double bonus = Double.parseDouble(bonusfelt.getText());
-        
-        BilForsikring bilForsikring = new BilForsikring(type, regår, regnr, lengde, bonus);
-        k.tegnForsikring(bilForsikring);
-        utskrift.append("Ny forsikring ble opprettet\n");
+        type = biltypefelt.getText(); 
+        regår = Integer.parseInt(regårfelt.getText());
+        regnr = regnrfelt.getText();
+        lengde = Integer.parseInt(lengdefelt.getText());
+        bonus = Double.parseDouble(bonusfelt.getText());
       }
       
       catch (Exception e) {
+        failed = true;
+      }
+      if (!failed && type != null && !type.equals("") && regår != -1 && regnr != null && !regnr.equals("") && lengde != -1 ) {
+        // Nå burde vi ha alle.
+        BilForsikring bilForsikring = new BilForsikring(type, regår, regnr, lengde, bonus);
+        k.tegnForsikring(bilForsikring);
+        utskrift.append("Ny forsikring ble opprettet\n");  
+      }
+      else {
         utskrift.append("Forsikringen ble ikke opprettet,"
                 + "\nNoen felt har feil informasjon eller mangler\n");
       }

@@ -116,6 +116,7 @@ public class ForsikringsKunde
     for(int i=0; i < 30; i++) {
       utskrift += "=";
     }
+    utskrift += "\n";
     
     return utskrift;
   }
