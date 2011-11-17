@@ -333,7 +333,7 @@ public class ForsikringsVindu extends JFrame
       kunderegisteret.visRegister(utskrift);
     }
     
-    //GÅR ANN Å REGISTRERE EN FORSIKRING UTEN REGNR, MEN IKKE UTEN NOE ANNET?!??! FIKS
+    
     //Registrerer en ny BilForikring på gitt bruker
     public void tegnBilForsikring(ForsikringsKunde k) {
       String type = "";
@@ -357,8 +357,8 @@ public class ForsikringsVindu extends JFrame
       if (!failed && type != null && !type.equals("") && regår != -1 && regnr != null && !regnr.equals("") && lengde != -1 ) {
         // Nå burde vi ha alle.
         BilForsikring bilForsikring = new BilForsikring(type, regår, regnr, lengde, bonus);
-        k.tegnForsikring(bilForsikring);
-        utskrift.append("Ny forsikring ble opprettet\n");  
+        String resultat = k.tegnForsikring(bilForsikring);
+        utskrift.append(resultat);
       }
       else {
         utskrift.append("Forsikringen ble ikke opprettet,"
