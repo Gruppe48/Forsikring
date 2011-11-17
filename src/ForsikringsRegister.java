@@ -52,7 +52,6 @@ public class ForsikringsRegister
     System.arraycopy(kr, 0, kunderegister, 0, kr.length);  
   }
   
-  //GÅR Å LAGE EN BRUKER UTEN NAVN/ADRESSE. FIKS!!
   //Legger inn en ny kunde i registeret
   public boolean nyKunde(ForsikringsKunde k) {
     for (int i = 0; i < kunderegister.length; i++) {
