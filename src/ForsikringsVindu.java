@@ -421,7 +421,7 @@ public class ForsikringsVindu extends JFrame
       }
       
       else {
-        utskrift.append("Ingen kunde med dette kundenummeret finnes i systemet");
+        utskrift.append("Ingen kunde med dette kundenummeret finnes i systemet\n");
       }
 
     }
